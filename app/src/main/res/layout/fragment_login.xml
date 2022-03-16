@@ -1,0 +1,134 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.LoginFragment"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_login"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bookstore_logo"
+            android:background="@color/background"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="@string/bookstore"
+            android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_two"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/logIn_Email"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="@string/email"
+            android:layout_marginBottom="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:drawableEnd="@drawable/ic_baseline_email_24"
+            android:background="@drawable/email_text_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/logIn_Password"/>
+
+        <EditText
+            android:id="@+id/logIn_Password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="356dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:drawableEnd="@drawable/ic_baseline_password_24"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:background="@drawable/email_text_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logIn_Email"/>
+
+        <Button
+            android:id="@+id/logIn_Button"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="232dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="@color/background"
+            android:text="@string/log_in"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logIn_Button">
+
+        <TextView
+            android:id="@+id/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/if_don_t_have_account"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:id="@+id/go_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/background"
+            android:layout_marginTop="40dp"
+            android:clickable="true"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
