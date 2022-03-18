@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookstore.R
-import com.example.bookstore.model.Constant
-import com.example.bookstore.model.Customer
-import com.example.bookstore.model.SharedPreference
 import com.example.bookstore.viewmodel.ProfileViewModel
 import com.example.bookstore.viewmodel.ProfileViewModelFactory
 import com.example.bookstore.viewmodel.SharedViewModel
@@ -23,7 +21,6 @@ class ProfileFragment : Fragment() {
     private lateinit var cancelButton: ImageButton
     private lateinit var customerEmail: TextView
     private lateinit var customerName: TextView
-    private lateinit var customerMobile: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +29,9 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         customerEmail = view.findViewById(R.id.email_viewer)
         customerName = view.findViewById(R.id.name_viewer)
-        customerMobile = view.findViewById(R.id.mobile_viewer)
         cancelButton = view.findViewById(R.id.close_profile_fragment)
         profileViewModel = ViewModelProvider(requireActivity(), ProfileViewModelFactory()) [ProfileViewModel::class.java]
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
-        profileViewModel.getData(requireContext())
-        SharedPreference.initSharedPreferences(requireContext())
         return view
     }
 
@@ -50,8 +44,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun displayUserData() {
-        customerName.text = SharedPreference.getString(Constant.CUSTOMER_NAME)
-        customerEmail.text = SharedPreference.getString(Constant.CUSTOMER_EMAIL)
-        customerMobile.text = SharedPreference.getString(Constant.CUSTOMER_MOBILE_NUMBER)
+        profileViewModel.getData(requireContext())
+        profileViewModel.profileStatus.observe(viewLifecycleOwner, Observer {
+            customerEmail.text = it.email
+            customerName.text = it.userName
+        })
     }
 }

@@ -20,8 +20,7 @@ class RegisterFragment: Fragment() {
     private lateinit var emailText: EditText
     private lateinit var passwordText: EditText
     private lateinit var confirmPasswordText: EditText
-    private lateinit var name: EditText
-    private lateinit var mobileNumber: EditText
+    private lateinit var userName: EditText
     private lateinit var signButton: Button
     private lateinit var goSign: TextView
     private lateinit var sharedViewModel: SharedViewModel
@@ -37,8 +36,7 @@ class RegisterFragment: Fragment() {
         emailText = view.findViewById(R.id.register_Email)
         passwordText = view.findViewById(R.id.register_Password)
         confirmPasswordText = view.findViewById(R.id.register_Confirm_Password)
-        name = view.findViewById(R.id.register_name)
-        mobileNumber = view.findViewById(R.id.register_mobile_number)
+        userName = view.findViewById(R.id.register_username)
         signButton = view.findViewById(R.id.register_Button)
         goSign = view.findViewById(R.id.go_login)
         customer = Customer()
@@ -75,14 +73,12 @@ class RegisterFragment: Fragment() {
     }
 
     private fun firebaseSignUp() {
-        val fullName = name.text.toString()
-        val mobileNumber = mobileNumber.text.toString()
+        val userName = userName.text.toString()
         val email = emailText.text.toString()
         val password = passwordText.text.toString()
          customer = Customer(
-             name = fullName,
+             userName = userName,
              email = email,
-             mobileNumber = mobileNumber,
              password = password
          )
         registerViewModel.register(customer)

@@ -29,4 +29,21 @@
     <string name="books">Books</string>
     <string name="by">by</string>
     <string name="rs">Rs.</string>
+    <string name="place_order">PLACE ORDER</string>
+    <string name="remove">Remove</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="pincode">Pincode</string>
+    <string name="locality">Locality</string>
+    <string name="address">Address</string>
+    <string name="city_town">City/Town</string>
+    <string name="landmark">Landmark</string>
+    <string name="order_continue">CONTINUE</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="order_checkout">CHECKOUT</string>
+    <string name="your_order">Your Order</string>
+    <string name="final_text">hurray!!! your order is confirmed for further communication save the order id</string>
+    <string name="continue_shopping">CONTINUE SHOPPING</string>
+    <string name="city_state">State</string>
+    <string name="order_details">Order Confirmed</string>
 </resources>

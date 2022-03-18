@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
 
+        <item android:id="@+id/nav_myOrders"
+            android:title="My Orders"
+            android:icon="@drawable/ic_baseline_shopping_bag_24"/>
+
         <item android:id="@+id/nav_myCart"
             android:title="@string/my_cart"
             android:icon="@drawable/ic_baseline_shopping_cart_24"/>

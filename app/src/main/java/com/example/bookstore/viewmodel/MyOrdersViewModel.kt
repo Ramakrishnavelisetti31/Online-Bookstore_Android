@@ -7,17 +7,18 @@ import com.example.bookstore.model.AuthListener
 import com.example.bookstore.model.Book
 import com.example.bookstore.service.BookService
 
-class WishListViewModel: ViewModel() {
+class MyOrdersViewModel: ViewModel() {
     private val bookService = BookService()
 
-    private val _getWishlistStatus = MutableLiveData<AuthListener>()
-    val getWishlistStatus =  _getWishlistStatus as LiveData<AuthListener>
+    private val _getOrderStatus = MutableLiveData<AuthListener>()
+    val getOrderStatus =  _getOrderStatus as LiveData<AuthListener>
 
-    fun getWishlist(wishlist: ArrayList<Book>) {
-        bookService.getWishlistItem(wishlist) {
+    fun getOrders(orderList: ArrayList<Book>) {
+        bookService.getMyOrders(orderList) {
             if (it.status) {
-                _getWishlistStatus.value = it
+                _getOrderStatus.value = it
             }
         }
     }
+
 }

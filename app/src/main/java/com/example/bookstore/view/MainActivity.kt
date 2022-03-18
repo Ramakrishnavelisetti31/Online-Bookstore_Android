@@ -71,6 +71,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        sharedViewModel.goToMyOrderPageStatus.observe(this, Observer {
+            if (it == true) {
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragment_container_one, MyOrdersFragment()).addToBackStack(null).commit()
+                }
+            }
+        })
+
+        sharedViewModel.goToFinalPageStatus.observe(this, Observer {
+            if (it == true) {
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragment_container_one, FinalFragment()).addToBackStack(null).commit()
+                }
+            }
+        })
+
     }
 
 }

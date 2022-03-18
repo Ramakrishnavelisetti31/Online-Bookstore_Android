@@ -23,6 +23,12 @@ class SharedViewModel: ViewModel() {
     private val _goToWishListPageStatus = MutableLiveData<Boolean>()
     val goToWishListPageStatus = _goToWishListPageStatus as LiveData<Boolean>
 
+    private val _goToMyOrderPageStatus = MutableLiveData<Boolean>()
+    val goToMyOrderPageStatus = _goToMyOrderPageStatus as LiveData<Boolean>
+
+    private val _goToFinalPageStatus = MutableLiveData<Boolean>()
+    val goToFinalPageStatus = _goToFinalPageStatus as LiveData<Boolean>
+
     fun setGoToLoginPageStatus(status: Boolean) {
         _goToLoginPageStatus.value = status
     }
@@ -45,6 +51,14 @@ class SharedViewModel: ViewModel() {
 
     fun setGoToWishListPageStatus(status: Boolean) {
         _goToWishListPageStatus.value = status
+    }
+
+    fun setGoToMyOrderPageStatus(status: Boolean) {
+        _goToMyOrderPageStatus.value = status
+    }
+
+    fun setGoToFinalPageStatus(status: Boolean) {
+        _goToFinalPageStatus.value = status
     }
 
 
