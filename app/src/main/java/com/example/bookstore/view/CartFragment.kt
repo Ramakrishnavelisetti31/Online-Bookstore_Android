@@ -23,6 +23,7 @@ import com.example.bookstore.viewmodel.*
 class CartFragment : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var cartViewModel: CartViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var cancelButton: ImageButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var cartAdapter: CartAdapter
@@ -46,6 +47,7 @@ class CartFragment : Fragment() {
         recyclerView.adapter = cartAdapter
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
         cartViewModel = ViewModelProvider(requireActivity(), CartViewModelFactory())[CartViewModel::class.java]
+        profileViewModel = ViewModelProvider(requireActivity(), ProfileViewModelFactory())[ProfileViewModel::class.java]
         return view
     }
 
@@ -62,10 +64,19 @@ class CartFragment : Fragment() {
         cartViewModel.getCart(cartList)
         cartViewModel.getCartStatus.observe(viewLifecycleOwner, Observer {
             cartAdapter.setListData(cartList)
+            cartListSize()
             cartAdapter.notifyDataSetChanged()
-            val total = cartList.size.toString()
-            cartBooks.text = "($total)"
         })
+    }
+
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+    private fun cartListSize() {
+        val total = cartAdapter.itemCount
+        if (total > 0) {
+            cartBooks.text = "($total)"
+            sharedViewModel.getCount(total)
+        }
+        cartAdapter.notifyDataSetChanged()
     }
 
 }

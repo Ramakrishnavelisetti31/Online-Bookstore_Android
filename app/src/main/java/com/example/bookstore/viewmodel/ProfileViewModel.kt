@@ -11,8 +11,8 @@ import com.example.bookstore.service.UserAuthService
 class ProfileViewModel: ViewModel() {
     private var userAuthService = UserAuthService()
 
-    private val _profileStatus = MutableLiveData<Customer>()
-    val profileStatus =  _profileStatus as LiveData<Customer>
+    private val _profileStatus = MutableLiveData<AuthListener>()
+    val profileStatus =  _profileStatus as LiveData<AuthListener>
 
     fun getData(context: Context) {
         userAuthService.getDataFromFirestore(context) {

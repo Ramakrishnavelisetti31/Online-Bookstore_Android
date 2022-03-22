@@ -29,6 +29,9 @@ class SharedViewModel: ViewModel() {
     private val _goToFinalPageStatus = MutableLiveData<Boolean>()
     val goToFinalPageStatus = _goToFinalPageStatus as LiveData<Boolean>
 
+    private val _countStatus = MutableLiveData<Int>()
+    val countStatus = _countStatus as LiveData<Int>
+
     fun setGoToLoginPageStatus(status: Boolean) {
         _goToLoginPageStatus.value = status
     }
@@ -59,6 +62,10 @@ class SharedViewModel: ViewModel() {
 
     fun setGoToFinalPageStatus(status: Boolean) {
         _goToFinalPageStatus.value = status
+    }
+
+    fun getCount(total: Int) {
+        _countStatus.value = total
     }
 
 

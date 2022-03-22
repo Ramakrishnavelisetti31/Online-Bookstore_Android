@@ -6,7 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import com.example.bookstore.adapter.CartAdapter
 import com.example.bookstore.model.AuthListener
+import com.example.bookstore.model.Constant
 import com.example.bookstore.model.Customer
+import com.example.bookstore.model.SharedPreference
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -73,15 +75,30 @@ class UserAuthService {
         }
     }
 
-    fun getDataFromFirestore(context: Context, listener: (Customer) -> Unit) {
+    fun getDataFromFirestore(context: Context, listener: (AuthListener) -> Unit) {
         firestore.collection("users").document(firebaseAuth.currentUser!!.uid).get()
             .addOnCompleteListener {
                 if (it.result.exists()) {
-                    val userNameResult = it.result.getString("userName").toString()
-                    val emailResult = it.result.getString("email").toString()
+                    val userName = it.result.getString("userName").toString()
+                    val email = it.result.getString("email").toString()
+                    val fullName = it.result.getString("fullName").toString()
+                    val phone = it.result.getString("phoneNumber").toString()
+                    val address = it.result.getString("address").toString()
+                    val city = it.result.getString("city").toString()
+                    val state = it.result.getString("state").toString()
+                    val pinCode = it.result.getString("pincode").toString()
                     val id = firebaseAuth.currentUser!!.uid
-                        val customer = Customer(userName = userNameResult, email = emailResult, customer_id = id)
-                        listener(customer)
+                    SharedPreference.initSharedPreferences(context)
+                    SharedPreference.addString(Constant.CUSTOMER_USER_NAME, userName)
+                    SharedPreference.addString(Constant.CUSTOMER_EMAIL, email)
+                    SharedPreference.addString(Constant.CUSTOMER_ID, id)
+                    SharedPreference.addString(Constant.CUSTOMER_FULL_NAME, fullName)
+                    SharedPreference.addString(Constant.CUSTOMER_PHONE, phone)
+                    SharedPreference.addString(Constant.CUSTOMER_ADDRESS, address)
+                    SharedPreference.addString(Constant.CUSTOMER_CITY, city)
+                    SharedPreference.addString(Constant.CUSTOMER_STATE, state)
+                    SharedPreference.addString(Constant.CUSTOMER_PINCODE, pinCode)
+                    listener(AuthListener(true, "Fetched data successfully"))
                 } else {
                     Log.d("UserAuthService", "get the data $it")
                 }

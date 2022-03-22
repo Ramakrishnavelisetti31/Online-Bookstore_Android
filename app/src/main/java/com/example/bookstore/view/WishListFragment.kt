@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.bookstore.R
 import com.example.bookstore.adapter.CartAdapter
 import com.example.bookstore.adapter.WishListAdapter
@@ -44,7 +45,6 @@ class WishListFragment : Fragment() {
         recyclerView.adapter = wishListAdapter
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
         wishListViewModel = ViewModelProvider(requireActivity(), WishListViewModelFactory())[WishListViewModel::class.java]
-
         return view
     }
 
@@ -56,14 +56,23 @@ class WishListFragment : Fragment() {
         getWishlistItem()
     }
 
-    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    @SuppressLint("NotifyDataSetChanged")
     private fun getWishlistItem() {
         wishListViewModel.getWishlist(wishList)
         wishListViewModel.getWishlistStatus.observe(viewLifecycleOwner, Observer {
             wishListAdapter.setListData(wishList)
+            wishlistSize()
             wishListAdapter.notifyDataSetChanged()
-            val total = wishList.size.toString()
-            cartBooks.text = "($total)"
         })
+    }
+
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+    private fun wishlistSize() {
+        val total = wishListAdapter.itemCount
+        if (total > 0) {
+            cartBooks.text = "($total)"
+            sharedViewModel.getCount(total)
+        }
+        wishListAdapter.notifyDataSetChanged()
     }
 }

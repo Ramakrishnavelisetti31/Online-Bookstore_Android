@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@color/background"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:menu="@menu/toolbar_menu"
+        android:paddingEnd="5dp">
 
         <ImageView
             android:id="@+id/logo_toolbar"
@@ -22,24 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <ImageButton
-            android:id="@+id/cart"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_baseline_shopping_cart_24"
-            android:background="@color/background"
-            android:layout_marginEnd="20dp" />
-
-        <ImageButton
-            android:id="@+id/wishlist"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_vector_wishlist_24"
-            android:background="@color/background"
-            android:layout_marginEnd="10dp"/>
 
     </androidx.appcompat.widget.Toolbar>
 

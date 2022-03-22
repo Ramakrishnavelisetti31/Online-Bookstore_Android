@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.bookstore.R
 import com.example.bookstore.model.Book
 import com.example.bookstore.service.BookService
+import com.example.bookstore.view.WishListFragment
 
 class WishListAdapter(private val context: Context,
                       private var wishList: ArrayList<Book>): RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {

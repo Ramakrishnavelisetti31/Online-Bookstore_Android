@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:padding="15dp"
+    android:focusable="true"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_vector_wishlist_24"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/wishlist_badge_textview"
+        android:layout_width="@dimen/toolbar_menu_icon_text"
+        android:layout_height="@dimen/toolbar_menu_icon_text"
+        android:text=""
+        android:textColor="@color/background"
+        android:background="@drawable/badge_shape"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="-4dp"
+        android:gravity="center"
+        style="@style/TextAppearance.MaterialComponents.Caption" />
+
+
+</FrameLayout>

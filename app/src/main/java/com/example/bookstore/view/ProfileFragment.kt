@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookstore.R
+import com.example.bookstore.model.Constant
+import com.example.bookstore.model.SharedPreference
 import com.example.bookstore.viewmodel.ProfileViewModel
 import com.example.bookstore.viewmodel.ProfileViewModelFactory
 import com.example.bookstore.viewmodel.SharedViewModel
@@ -32,22 +34,21 @@ class ProfileFragment : Fragment() {
         cancelButton = view.findViewById(R.id.close_profile_fragment)
         profileViewModel = ViewModelProvider(requireActivity(), ProfileViewModelFactory()) [ProfileViewModel::class.java]
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
+        profileViewModel.getData(requireContext())
+        SharedPreference.initSharedPreferences(requireContext())
+        displayUserData()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        displayUserData()
         cancelButton.setOnClickListener {
             sharedViewModel.setGoToHomePageStatus(true)
         }
     }
 
     private fun displayUserData() {
-        profileViewModel.getData(requireContext())
-        profileViewModel.profileStatus.observe(viewLifecycleOwner, Observer {
-            customerEmail.text = it.email
-            customerName.text = it.userName
-        })
+        customerEmail.text = SharedPreference.getString(Constant.CUSTOMER_EMAIL)
+        customerName.text = SharedPreference.getString(Constant.CUSTOMER_USER_NAME)
     }
 }

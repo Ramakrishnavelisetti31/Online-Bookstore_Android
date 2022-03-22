@@ -2,7 +2,6 @@ package com.example.bookstore.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookstore.R
 import com.example.bookstore.model.Book
+import com.example.bookstore.model.Constant
+import com.example.bookstore.model.SharedPreference
 import com.example.bookstore.service.BookService
+import com.example.bookstore.view.BadgeCount
 import java.util.*
-import kotlin.collections.ArrayList
 
 class BookAdapter(private val context: Context,
-                  private var bookList: ArrayList<Book>): RecyclerView.Adapter<BookAdapter.MyViewHolder>(), Filterable {
-
+                  private var bookList: ArrayList<Book>,
+                  ): RecyclerView.Adapter<BookAdapter.MyViewHolder>(), Filterable {
     private var bookService = BookService()
     private var allBooks = arrayListOf<Book>().apply {
         addAll(bookList)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookAdapter.MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.book_layout, parent, false)
         return MyViewHolder(view)
@@ -35,7 +37,7 @@ class BookAdapter(private val context: Context,
         holder.bookPrice.text = book.book_Price
         val uri = book.book_imgUrl.toUri()
         Glide.with(context).load(uri).into(holder.bookImage)
-        onCartClick(holder, position)
+            onCartClick(holder, position)
         onWishListClick(holder, position)
     }
 
@@ -112,5 +114,4 @@ class BookAdapter(private val context: Context,
             notifyDataSetChanged()
         }
     }
-
 }

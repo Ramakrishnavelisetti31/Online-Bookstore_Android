@@ -2,9 +2,8 @@ package com.example.bookstore.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.os.Handler
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,34 +13,34 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bookstore.R
 import com.example.bookstore.adapter.BookAdapter
-import com.example.bookstore.model.AuthListener
 import com.example.bookstore.model.Book
+import com.example.bookstore.model.Constant
+import com.example.bookstore.model.SharedPreference
 import com.example.bookstore.viewmodel.*
 import com.google.android.material.navigation.NavigationView
-import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var cartViewModel: CartViewModel
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var toolbar: Toolbar
     private lateinit var searchView: androidx.appcompat.widget.SearchView
-    private lateinit var cartButton: ImageButton
-    private lateinit var wishlistButton: ImageButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var bookAdapter: BookAdapter
     private lateinit var bookList: ArrayList<Book>
-    private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
+    private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var totalBooks: TextView
     private lateinit var spinner: Spinner
+    private lateinit var progressBar: ProgressBar
+    var page = 1
+    var isLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,11 +51,10 @@ class HomeFragment : Fragment() {
         navigationView = view.findViewById(R.id.navigation_view)
         toolbar = view.findViewById(R.id.tool_bar)
         searchView = view.findViewById(R.id.search_books)
-        cartButton = view.findViewById(R.id.cart)
-        wishlistButton = view.findViewById(R.id.wishlist)
         recyclerView = view.findViewById(R.id.recycler_view)
         totalBooks = view.findViewById(R.id.bookSize)
         spinner = view.findViewById(R.id.price_spinner)
+        progressBar = view.findViewById(R.id.progress_bar)
         bookList = arrayListOf()
         val activity = activity as AppCompatActivity?
         activity?.setSupportActionBar(toolbar)
@@ -66,30 +64,38 @@ class HomeFragment : Fragment() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         actionBarDrawerToggle.syncState()
-        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.layoutManager = staggeredGridLayoutManager
+        gridLayoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = gridLayoutManager
         recyclerView.setHasFixedSize(true)
         bookAdapter = BookAdapter(requireContext(), bookList)
         recyclerView.adapter = bookAdapter
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
         homeViewModel = ViewModelProvider(requireActivity(), HomeViewModelFactory())[HomeViewModel::class.java]
-        cartViewModel = ViewModelProvider(requireActivity(), CartViewModelFactory())[CartViewModel::class.java]
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigationMenu()
-            viewBooks()
+        viewBooks()
         searchNote()
         filter()
+        setHasOptionsMenu(true)
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
-        cartButton.setOnClickListener {
-            sharedViewModel.setGoToCartPageStatus(true)
-        }
-        wishlistButton.setOnClickListener {
-            sharedViewModel.setGoToWishListPageStatus(true)
-        }
+                val visibleItemCount = gridLayoutManager.childCount
+                val firstItemPosition = gridLayoutManager.findFirstCompletelyVisibleItemPosition()+1
+                val total = gridLayoutManager.itemCount
+                if (isLoading) {
+                    if ((visibleItemCount + firstItemPosition >= total)) {
+                        page ++
+                        pagination()
+                    }
+                }
+            }
+        })
     }
 
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
@@ -98,9 +104,57 @@ class HomeFragment : Fragment() {
         homeViewModel.getBookStatus.observe(viewLifecycleOwner, Observer {
             bookAdapter.setListData(bookList)
             bookAdapter.notifyDataSetChanged()
-            val total = bookAdapter.itemCount.toString()
+            val total = bookAdapter.itemCount
             totalBooks.text = "($total)"
         })
+    }
+
+    private fun pagination() {
+        isLoading = true
+        progressBar.visibility = View.VISIBLE
+        viewBooks()
+        Handler().postDelayed({
+            isLoading = false
+            progressBar.visibility = View.GONE
+        }, 3000)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val cartItem = menu.findItem(R.id.menu_cart)
+        val wishItem = menu.findItem(R.id.menu_wishlist)
+        val cartActionView = cartItem.actionView
+        val wishActionView = wishItem.actionView
+        val cartBadgeText = cartActionView.findViewById<TextView>(R.id.cart_badge_textview)
+        val wishBadgeText = wishActionView.findViewById<TextView>(R.id.wishlist_badge_textview)
+
+//        sharedViewModel.countStatus.observe(viewLifecycleOwner, Observer {
+//            wishBadgeText.text = it.toString()
+//        })
+//
+//        sharedViewModel.countStatus.observe(viewLifecycleOwner, Observer {
+//            cartBadgeText.text = it.toString()
+//        })
+
+        cartBadgeText.setOnClickListener {
+            onOptionsItemSelected(cartItem)
+        }
+        wishBadgeText.setOnClickListener {
+            onOptionsItemSelected(wishItem)
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.menu_wishlist -> {
+                sharedViewModel.setGoToWishListPageStatus(true)
+            }
+            R.id.menu_cart -> {
+                sharedViewModel.setGoToCartPageStatus(true)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun filter() {
@@ -117,6 +171,11 @@ class HomeFragment : Fragment() {
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (spinner.selectedItemPosition.toString() == "0") {
+                    bookAdapter.setListData(bookList)
+                    bookAdapter.notifyDataSetChanged()
+                }
                 if (spinner.selectedItemPosition.toString() == "1") {
 
                     val list = bookAdapter.priceLowToHigh()

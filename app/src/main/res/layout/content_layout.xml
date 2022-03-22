@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
     <include
         android:id="@+id/toolbar"
@@ -19,7 +20,8 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/nameBook"
@@ -65,25 +67,32 @@
         app:layout_constraintTop_toBottomOf="@id/constraint_filter"
         android:layout_margin="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
 
-            </androidx.recyclerview.widget.RecyclerView>
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:scrollbars="vertical">
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progress_bar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentBottom="true"/>-->
+               </androidx.recyclerview.widget.RecyclerView>
 
-        </RelativeLayout>
+               <ProgressBar
+                   android:id="@+id/progress_bar"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentBottom="true"/>
+
+           </LinearLayout>
+
+       </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

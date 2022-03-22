@@ -8,6 +8,8 @@
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable-v24/ic_baseline_keyboard_backspace_24.xml" value="0.186" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable-v24/order_text_layout.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/add_sub_bg_layout.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/badge.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/badge_shape.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/button1_change_color.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/button_background.xml" value="0.186" />
@@ -17,10 +19,21 @@
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/change_wishlist_button.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/custom_button.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/email_text_layout.xml" value="0.186" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_password_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_privacy_tip_24.xml" value="0.2035" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.186" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_vector_wishlist1_24.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_vector_wishlist2_24.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/ic_vector_wishlist_24.xml" value="0.186" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/item.xml" value="0.2035" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/toolbar_background.xml" value="0.186" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/drawable/wishlist_button_border.xml" value="0.186" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/activity_main.xml" value="0.2604166666666667" />
@@ -29,6 +42,7 @@
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/book_layout.xml" value="0.2" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/bottom_sheet.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/cart_action_item.xml" value="1.6" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/cart_book_layout.xml" value="0.264" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/change_wishlist_button.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/content_layout.xml" value="0.27447916666666666" />
@@ -46,8 +60,10 @@
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/header_navigation.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/myorders_layout.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/toolbar_layout.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/wishlist_action_item.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/layout/wishlist_book_layout.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/menu/navigation_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BookStore/app/src/main/res/menu/toolbar_menu.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>
