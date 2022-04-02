@@ -21,6 +21,7 @@ class RegisterFragment: Fragment() {
     private lateinit var passwordText: EditText
     private lateinit var confirmPasswordText: EditText
     private lateinit var userName: EditText
+    private lateinit var phoneText: EditText
     private lateinit var signButton: Button
     private lateinit var goSign: TextView
     private lateinit var sharedViewModel: SharedViewModel
@@ -37,6 +38,7 @@ class RegisterFragment: Fragment() {
         passwordText = view.findViewById(R.id.register_Password)
         confirmPasswordText = view.findViewById(R.id.register_Confirm_Password)
         userName = view.findViewById(R.id.register_username)
+        phoneText = view.findViewById(R.id.register_phone)
         signButton = view.findViewById(R.id.register_Button)
         goSign = view.findViewById(R.id.go_login)
         customer = Customer()
@@ -76,12 +78,15 @@ class RegisterFragment: Fragment() {
         val userName = userName.text.toString()
         val email = emailText.text.toString()
         val password = passwordText.text.toString()
+        val mobile = phoneText.text.toString()
          customer = Customer(
              userName = userName,
              email = email,
-             password = password
+             password = password,
+             mobileNumber = mobile
          )
-        registerViewModel.register(customer)
+        registerViewModel.register(customer, requireContext())
+//        registerViewModel.apiRegister(customer)
         registerViewModel.registrationStatus.observe(viewLifecycleOwner, Observer {
             if (it.status) {
                 sharedViewModel.setGoToHomePageStatus(true)

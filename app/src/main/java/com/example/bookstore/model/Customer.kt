@@ -11,6 +11,7 @@ data class Customer(
     var city: String = "",
     var state: String = "",
     var pinCode: String = "",
-    var customer_id: String = ""
+    var customer_id: String = "",
+    var returnSecureToken: Boolean = true
 )
 

@@ -14,8 +14,8 @@ class CartViewModel: ViewModel() {
     private val _getCartStatus = MutableLiveData<AuthListener>()
     val getCartStatus =  _getCartStatus as LiveData<AuthListener>
 
-    fun getCart(bookList: ArrayList<Book>) {
-        bookService.getCartItem(bookList) {
+    fun getCart(bookList: ArrayList<Book>, context: Context) {
+        bookService.getCartItem(bookList, context) {
             if (it.status) {
                 _getCartStatus.value = it
             }

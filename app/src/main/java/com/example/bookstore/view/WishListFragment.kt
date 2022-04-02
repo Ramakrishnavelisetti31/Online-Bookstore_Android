@@ -58,7 +58,7 @@ class WishListFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun getWishlistItem() {
-        wishListViewModel.getWishlist(wishList)
+        wishListViewModel.getWishlist(wishList, requireContext())
         wishListViewModel.getWishlistStatus.observe(viewLifecycleOwner, Observer {
             wishListAdapter.setListData(wishList)
             wishlistSize()

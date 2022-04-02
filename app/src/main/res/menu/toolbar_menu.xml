@@ -8,14 +8,12 @@
         android:title="@string/my_wishlist"
         android:icon="@drawable/ic_vector_wishlist_24"
         app:showAsAction="always"
-        tools:ignore="AlwaysShowAction"
-        app:actionLayout="@layout/wishlist_action_item"/>
+        tools:ignore="AlwaysShowAction" />
 
     <item
         android:id="@+id/menu_cart"
         android:title="@string/my_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
-        app:showAsAction="always"
-        app:actionLayout="@layout/cart_action_item"/>
+        app:showAsAction="always" />
 
 </menu>

@@ -1,5 +1,7 @@
 package com.example.bookstore.viewmodel
 
+import android.content.Context
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,5 +22,20 @@ class LoginViewModel: ViewModel() {
             }
         }
     }
+
+    fun apiLogIn(customer: Customer) {
+        userAuthService.logInWithApi(customer.email, customer.password) {
+            if (it.status) {
+                _loginStatus.value = it
+            }
+        }
+    }
+
+    fun localLogIn(customer: Customer, context: Context) =
+        userAuthService.sqlLogin(customer, context) {
+            if (it.status) {
+                _loginStatus.value = it
+            }
+        }
 }
 

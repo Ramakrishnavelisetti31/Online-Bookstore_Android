@@ -25,8 +25,8 @@ class HomeViewModel: ViewModel() {
         }
     }
 
-    fun getBooks(bookList: ArrayList<Book>) {
-        bookService.getBookDataFromFirestore(bookList) {
+    fun getBooks(bookList: ArrayList<Book>, context: Context) {
+        bookService.getBookDataFromFirestore(bookList, context) {
             _getBookStatus.value = it
         }
     }

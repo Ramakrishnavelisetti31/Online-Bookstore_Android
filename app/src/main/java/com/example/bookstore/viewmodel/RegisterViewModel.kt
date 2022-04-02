@@ -1,5 +1,6 @@
 package com.example.bookstore.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +14,16 @@ class RegisterViewModel: ViewModel() {
     private val _registrationStatus = MutableLiveData<AuthListener>()
     val registrationStatus =  _registrationStatus as LiveData<AuthListener>
 
-    fun register(customer: Customer) {
-        userAuthService.registerUser(customer) {
+    fun register(customer: Customer, context: Context) {
+        userAuthService.registerUser(customer, context) {
+            if (it.status) {
+                _registrationStatus.value = it
+            }
+        }
+    }
+
+    fun apiRegister(customer: Customer) {
+        userAuthService.signUpWithApi(customer.email, customer.password) {
             if (it.status) {
                 _registrationStatus.value = it
             }

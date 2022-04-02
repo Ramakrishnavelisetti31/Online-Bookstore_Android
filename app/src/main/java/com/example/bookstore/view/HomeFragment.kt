@@ -100,7 +100,7 @@ class HomeFragment : Fragment(){
 
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     private fun viewBooks() {
-        homeViewModel.getBooks(bookList)
+        homeViewModel.getBooks(bookList, requireContext())
         homeViewModel.getBookStatus.observe(viewLifecycleOwner, Observer {
             bookAdapter.setListData(bookList)
             bookAdapter.notifyDataSetChanged()
@@ -121,28 +121,6 @@ class HomeFragment : Fragment(){
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
-        val cartItem = menu.findItem(R.id.menu_cart)
-        val wishItem = menu.findItem(R.id.menu_wishlist)
-        val cartActionView = cartItem.actionView
-        val wishActionView = wishItem.actionView
-        val cartBadgeText = cartActionView.findViewById<TextView>(R.id.cart_badge_textview)
-        val wishBadgeText = wishActionView.findViewById<TextView>(R.id.wishlist_badge_textview)
-
-//        sharedViewModel.countStatus.observe(viewLifecycleOwner, Observer {
-//            wishBadgeText.text = it.toString()
-//        })
-//
-//        sharedViewModel.countStatus.observe(viewLifecycleOwner, Observer {
-//            cartBadgeText.text = it.toString()
-//        })
-
-        cartBadgeText.setOnClickListener {
-            onOptionsItemSelected(cartItem)
-        }
-        wishBadgeText.setOnClickListener {
-            onOptionsItemSelected(wishItem)
-        }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -159,9 +137,9 @@ class HomeFragment : Fragment(){
 
     private fun filter() {
         val items = ArrayList<String>()
-        items.add("Sort by relevance")
-        items.add("Price: Low to High")
-        items.add("Price High to Low")
+        items.add(getString(R.string.sort_by_relevance))
+        items.add(getString(R.string.low_to_high))
+        items.add(getString(R.string.high_to_low))
 
         val adapter: ArrayAdapter<String> =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, items)

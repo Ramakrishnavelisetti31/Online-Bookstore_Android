@@ -113,6 +113,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/register_Confirm_Password" />
 
+        <EditText
+            android:id="@+id/register_phone"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_local_phone_24"
+            android:hint="Phone"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/email_text_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_username" />
+
         <Button
             android:id="@+id/register_Button"
             android:layout_width="100dp"
@@ -127,7 +141,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/register_Confirm_Password" />
+            app:layout_constraintTop_toBottomOf="@id/register_phone" />
 
         <LinearLayout
             android:layout_width="wrap_content"

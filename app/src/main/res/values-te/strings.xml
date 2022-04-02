@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">బుక్ స్టోర్</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="bookstore">బుక్ స్టోర్</string>
+    <string name="email">ఇమెయిల్</string>
+    <string name="password">పాస్వర్డ్</string>
+    <string name="log_in">లాగ్ ఇన్ చెయ్</string>
+    <string name="already_have_an_account">ఖాతా కలిగి ఉన్నారా?</string>
+    <string name="if_don_t_have_account">ఖాతా లేకుంటే?</string>
+    <string name="signup">సైన్అప్ అవండి</string>
+    <string name="signin">సైన్ ఇన్ అవడీ</string>
+    <string name="confirm_password">పాస్వర్డ్ను నిర్ధారించండి</string>
+    <string name="name">పేరు</string>
+    <string name="mobilenumber">మొబైల్ నంబర్</string>
+    <string name="Register">నమోదు చేసుకోండి</string>
+    <string name="my_orders">నా ఆర్డర్లు</string>
+    <string name="my_cart">నా కార్ట్</string>
+    <string name="my_wishlist">నాకు నచ్చినవి</string>
+    <string name="my_account">నా ఖాతా</string>
+    <string name="logout">లాగ్ అవుట్ చెయ్</string>
+    <string name="help_centre">సహాయ కేంద్రం</string>
+    <string name="privacy_policy">గోప్యతా విధానం</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_close">Close</string>
+    <string name="add_to_cart">కార్ట్‌కి యాడ్ చెయ్</string>
+    <string name="wishlist">నచ్చినవి</string>
+    <string name="books">బుక్స్</string>
+    <string name="by">రచన</string>
+    <string name="rs">రూ.</string>
+    <string name="place_order">ఆర్డర్ చెయ్</string>
+    <string name="remove">తొలగించు</string>
+    <string name="customer_details">వినియోగదారుని వివరాలు</string>
+    <string name="phone_number">మొబైల్ నంబర్</string>
+    <string name="pincode">పిన్ కోడ్</string>
+    <string name="locality">స్థానికత</string>
+    <string name="address">చిరునామా</string>
+    <string name="city_town">నగరం/పట్టణం</string>
+    <string name="landmark">మైలురాయి</string>
+    <string name="order_continue">కొనసాగించు</string>
+    <string name="order_summary">ఆర్డర్ వివరాలు</string>
+    <string name="order_checkout">చెక్అవుట్</string>
+    <string name="your_order">మీ ఆర్డర్</string>
+    <string name="final_text">ధన్యవాదాలు!!! తదుపరి కమ్యూనికేషన్ కోసం మీ ఆర్డర్ ధృవీకరించబడింది ఆర్డర్ ఐడిని సేవ్ చేయండి</string>
+    <string name="continue_shopping">షాపింగ్ కొనసాగించడానికి</string>
+    <string name="city_state">రాష్ట్రం</string>
+    <string name="order_details">ఆర్డర్ ధృవీకరించబడింది</string>
+    <string name="sort_by_relevance">క్రమబద్ధీకరించు</string>
+    <string name="low_to_high">ధర: తక్కువ నుండి ఎక్కువ</string>
+    <string name="high_to_low">ధర: ఎక్కువ నుండి తక్కువ</string>
+
+</resources>

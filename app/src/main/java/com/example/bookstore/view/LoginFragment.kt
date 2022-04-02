@@ -1,5 +1,6 @@
 package com.example.bookstore.view
 
+import android.database.Cursor
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -15,10 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookstore.R
 import com.example.bookstore.model.Customer
-import com.example.bookstore.viewmodel.LoginViewModel
-import com.example.bookstore.viewmodel.LoginViewModelFactory
-import com.example.bookstore.viewmodel.SharedViewModel
-import com.example.bookstore.viewmodel.SharedViewModelFactory
+import com.example.bookstore.viewmodel.*
 
 class LoginFragment : Fragment() {
     private lateinit var emailText: EditText
@@ -28,7 +26,7 @@ class LoginFragment : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var customer: Customer
-
+    private lateinit var networkConnectivity: NetworkConnectivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +39,7 @@ class LoginFragment : Fragment() {
         customer = Customer()
         sharedViewModel = ViewModelProvider(requireActivity(), SharedViewModelFactory())[SharedViewModel::class.java]
         loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory()) [LoginViewModel::class.java]
+        networkConnectivity = NetworkConnectivity(requireContext())
         return view
     }
 
@@ -67,7 +66,14 @@ class LoginFragment : Fragment() {
         val email = emailText.text.toString().trim()
         val password = passwordText.text.toString().trim()
         customer = Customer(email = email, password = password)
-        loginViewModel.logIn(customer)
+        networkConnectivity.observe(viewLifecycleOwner, Observer {isAvailable ->
+            if (isAvailable) {
+                loginViewModel.logIn(customer)
+//        loginViewModel.apiLogIn(customer)
+            } else {
+                loginViewModel.localLogIn(customer, requireContext())
+            }
+        })
         loginViewModel.loginStatus.observe(viewLifecycleOwner, Observer {
             if (it.status) {
                 sharedViewModel.setGoToHomePageStatus(true)

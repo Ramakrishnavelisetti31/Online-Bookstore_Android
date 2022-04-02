@@ -61,7 +61,7 @@ class CartFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     private fun getCartItem() {
-        cartViewModel.getCart(cartList)
+        cartViewModel.getCart(cartList, requireContext())
         cartViewModel.getCartStatus.observe(viewLifecycleOwner, Observer {
             cartAdapter.setListData(cartList)
             cartListSize()

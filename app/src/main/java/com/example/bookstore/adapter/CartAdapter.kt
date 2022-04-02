@@ -126,6 +126,9 @@ private var cartList: ArrayList<Book>): RecyclerView.Adapter<CartAdapter.MyViewH
                     pinCode = pinCode
                 )
                 userAuthService.sendAddressDetails(customer)
+                openBottomLayout(bName, aName, img, price)
+                cartList.removeAt(position)
+                bookService.removeCartItem(book.book_id, context)
             }
             else {
                 openBottomLayout(bName, aName, img, price)
@@ -170,15 +173,9 @@ private var cartList: ArrayList<Book>): RecyclerView.Adapter<CartAdapter.MyViewH
     @SuppressLint("NotifyDataSetChanged")
     private fun onImageClick(imageView: ImageView, holder: MyViewHolder, position: Int, book: Book) {
         imageView.setOnClickListener {
+            cartList[position]
             book.expand = !book.expand
-            notifyDataSetChanged()
-            SharedPreference.initSharedPreferences(context)
-            holder.customerName.setText(SharedPreference.getString(Constant.CUSTOMER_FULL_NAME))
-            holder.customerNumber.setText(SharedPreference.getString(Constant.CUSTOMER_PHONE))
-            holder.customerAddress.setText(SharedPreference.getString(Constant.CUSTOMER_ADDRESS))
-            holder.customerCity.setText(SharedPreference.getString(Constant.CUSTOMER_CITY))
-            holder.customerState.setText(SharedPreference.getString(Constant.CUSTOMER_STATE))
-            holder.customerPinCode.setText(SharedPreference.getString(Constant.CUSTOMER_PINCODE))
+            notifyItemChanged(position)
         }
     }
 
